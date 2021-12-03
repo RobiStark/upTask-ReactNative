@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+import {Root} from 'native-base'
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -14,6 +15,7 @@ const App = () => {
 
   return (
     <>
+    <Root>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen
@@ -41,6 +43,7 @@ const App = () => {
           />
         </Stack.Navigator>
       </NavigationContainer>
+      </Root>
     </>
   )
 
