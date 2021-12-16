@@ -30,7 +30,6 @@ const Login = () => {
     const [autenticarUsuario] = useMutation(AUTENTICAR_USUARIO);
 
     //Cuando el usuario presiona iniciar sesion
-
     const handleSubmit = async () => {
          //validar
          if (email === '' || password === ''){

@@ -5,7 +5,7 @@ import globalStyles from '../styles/global';
 import {useNavigation} from '@react-navigation/native';
 import {gql, useMutation} from '@apollo/client';
 
-const NUEVO_PROYECTO = gql `
+ const NUEVO_PROYECTO = gql `
     mutation NuevoProyecto($input: ProyectoInput) {
         nuevoProyecto(input: $input) {
             nombre
@@ -13,6 +13,16 @@ const NUEVO_PROYECTO = gql `
         }
     }
 `;
+
+//Actualizar el cache
+const OBTENER_PROYECTOS = gql`
+    query ObtenerProyectos {
+        obtenerProyectos {
+            nombre
+            id
+        }
+    }
+` 
 
 const NuevoProyecto = () => {
 
@@ -24,8 +34,15 @@ const NuevoProyecto = () => {
     const [nombre, guardarNombre] = useState('');
 
     //Apollo
-    const [nuevoProyecto] = useMutation(NUEVO_PROYECTO)
-
+     const [nuevoProyecto] = useMutation(NUEVO_PROYECTO, {
+        update(cache, {data: {nuevoProyecto}}){
+            const{obtenerProyectos} = cache.readQuery({query: OBTENER_PROYECTOS});
+            cache.writeQuery({
+                query:OBTENER_PROYECTOS,
+                data:{obtenerProyectos: obtenerProyectos.concat([nuevoProyecto])}
+            })
+        }
+    })
     //validar crear proyecto
     const handleSubmit = async () => {
         if (nombre === '') {
@@ -36,8 +53,8 @@ const NuevoProyecto = () => {
         //Guardar el proyecto en la base de datos
         try {
             const {data} = await nuevoProyecto({
-                variables:{
-                    input:{
+                variables: {
+                    input: {
                         nombre
                     }
                 }
@@ -46,7 +63,7 @@ const NuevoProyecto = () => {
             guardarMensaje('Proyecto Creado Correctamente');
             navigation.navigate('Proyectos');
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             guardarMensaje(error.message);
         }
     }
@@ -63,7 +80,7 @@ const NuevoProyecto = () => {
         <Container style={[globalStyles.contenedor, {backgroundColor:'#e84347'}]}>
             
             <View style={globalStyles.contenido}>
-                <H1 style={globalStyles.subtitulo}>Selecciona un Proyecto</H1>
+                <H1 style={globalStyles.subtitulo}>Crea un Proyecto</H1>
                 <Form>
                     <Item inlineLabel last style={globalStyles.input}>
                         <Input

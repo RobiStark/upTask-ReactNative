@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
 import { Container, Button, Text, Input, Form, Item, Toast, H1} from 'native-base';
-import {useNavigation} from '@react-navigation/native'
+import {useNavigation} from '@react-navigation/native';
 import globalStyles from '../styles/global';
 
 //Apollo

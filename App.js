@@ -11,6 +11,7 @@ import Login from './views/Login';
 import Crearcuenta from './views/CrearCuenta';
 import Proyectos from './views/Proyectos';
 import NuevoProyecto from './views/NuevoProyecto';
+import Proyecto from './views/Proyecto';
 
 
 const App = () => {
@@ -73,6 +74,22 @@ const App = () => {
               }
             }}
           />
+
+          <Stack.Screen
+            name="Proyecto"
+            component={Proyecto}
+            options={ ({route}) => ({
+              title: route.params.nombre,
+              headerStyle:{
+                backgroundColor: '#28303B'
+              },
+              headerTintColor:'#fff',
+              headerTitleStyle:{
+                fontWeight:'bold'
+              }
+            })}
+          />
+
         </Stack.Navigator>
       </NavigationContainer>
       </Root>
