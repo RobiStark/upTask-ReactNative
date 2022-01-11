@@ -84,7 +84,8 @@ const CrearCuenta = () => {
                    <Item inlineLabel last style={globalStyles.input}>
                        <Input
                         placeholder="Email"
-                        onChangeText={texto => guardarEmail(texto)}
+                        onChangeText={texto => guardarEmail(texto.toLocaleLowerCase())}
+                        value={email}
                        />
                    </Item>
                    <Item inlineLabel last style={globalStyles.input}>

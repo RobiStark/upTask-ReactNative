@@ -77,9 +77,10 @@ const Login = () => {
                <Form>
                    <Item inlineLabel last style={globalStyles.input}>
                        <Input
-                       autoCompleteType="email"
+                        autoCompleteType="email"
                         placeholder="Email"
-                        onChangeText={texto => guardarEmail(texto)}
+                        onChangeText={texto => guardarEmail(texto.toLocaleLowerCase())}
+                        value={email}
                        />
                    </Item>
                    <Item inlineLabel last style={globalStyles.input}>

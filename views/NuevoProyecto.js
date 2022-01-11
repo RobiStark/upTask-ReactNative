@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View } from 'react-native';
+import {View} from 'react-native';
 import { Container, Text, H1, Form, Item, Input, Toast, Button} from 'native-base';
 import globalStyles from '../styles/global';
 import {useNavigation} from '@react-navigation/native';
@@ -86,6 +86,7 @@ const NuevoProyecto = () => {
                         <Input
                             placeholder="Nombre del proyecto"
                             onChangeText={texto => guardarNombre(texto)}
+                            value={nombre}
                         />
                     </Item>
                 </Form>

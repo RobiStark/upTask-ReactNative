@@ -19,7 +19,8 @@ const Proyectos = () => {
     const navigation = useNavigation();
 
     //Apollo
-    const {data, loading, error} = useQuery(OBTENER_PROYECTOS);
+    const { data, loading, error } = useQuery(OBTENER_PROYECTOS);
+    if(loading) return <Text>Cargando...</Text>
 
     return (  
         <Container style={[globalStyles.contenedor, {backgroundColor:'#e84347'}]}>
