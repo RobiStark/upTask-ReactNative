@@ -84,7 +84,7 @@ const NuevoProyecto = () => {
                 <Form>
                     <Item inlineLabel last style={globalStyles.input}>
                         <Input
-                            placeholder="Nombre del proyecto"
+                            placeholder="Nombre del Proyecto"
                             onChangeText={texto => guardarNombre(texto)}
                             value={nombre}
                         />
